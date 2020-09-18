@@ -3,5 +3,8 @@ This is the repository for SemEval 2020 Task 5 Counterfactual Detection. The rel
 
 We collected counterfactual sentences online from three domains, finance, politics and health and then labeled them on the crowdsource platform, Amazon Turk. After that, we processed the results to build our dataset. Data and baseline model for Subtask 1 and Subtask 2 can be found in the folds `Subtask1_data` and `Subtask2_data`. 
 ## Data collection and parsing ##
+coming soon
 ## Turk UI ##
-## Result processing ##
+
+## Results processing ##
+coming soon
