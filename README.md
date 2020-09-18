@@ -5,6 +5,6 @@ We collected counterfactual sentences online from three domains, finance, politi
 ## Data collection and parsing ##
 coming soon
 ## Turk UI ##
-
+The workers' UI can be seen in `Work UI.html`. Before we got the workers into the tasks, we gave them a tutorial for the each task and then made sure that they were all clear on what we wanted. Tutorial can be found in `Subtask1 UI.html` and `Subtask2 UI.html` respectively. Actually, we planned to established a third task, but due to the problem of short of time, it had been merged into Subtask 2, but you can still find `Subtask3 UI.html`. 
 ## Results processing ##
 coming soon
