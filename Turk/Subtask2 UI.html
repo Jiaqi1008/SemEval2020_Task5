@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>Subtask 2</title>
+
+    <style type="text/css">
+        .top{
+            height: 80px;
+            background: #BC8F8F;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .top p{
+            color: #FFFFFF;
+            font-size: 36px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 80px;
+        }
+        .content{
+            margin: 0 auto;
+            line-height: 30px;
+            padding-left: 150px;
+            padding-right: 150px;
+            font-size: 0;
+        }
+        .textarea{
+            width: 1200px;
+            line-height:20px
+
+        }
+        .button{
+            margin-top:32px;
+            height:40px;
+            text-decoration:none;
+            background:#2f435e;
+            color:#f2f2f2;
+            padding: 10px 30px 10px 30px;
+            font-size:16px;
+            font-family: Arial,sans-serif;
+            font-weight:bold;
+            border-radius:3px;
+            -webkit-transition:all linear 0.30s;
+            -moz-transition:all linear 0.30s;
+            transition:all linear 0.30s;
+        }
+        input:hover { background:#385f9e; }
+<!--
+.STYLE8 {color: #000000; font-size: large; font-family: Arial;}
+.STYLE9 {color: #000000; font-size: 20px; font-family: Arial; }
+.STYLE10 {color: #000000; font-size: 25px; font-family: Arial;}
+.STYLE22 {color: #000000; font-size: 30px; font-family: Arial;}
+.STYLE44 {font-size: 18px; font-weight: bold}
+.STYLE45 {font-size: 16px; font-family: Arial;}
+.STYLE47 {color: #000000; font-size: 30px; font-weight: bold; font-family: Arial;}
+-->
+    </style>
+
+    <script type=text/javascript>
+    function showAndHidden(a,b){
+        var div1=document.getElementById(a);
+        var div2=document.getElementById(b);
+        if(div1.style.display=='block')
+            div1.style.display='none';
+        else
+            div1.style.display='block';
+        if(div2.style.display=='block')
+            div2.style.display='none';
+        else
+            div2.style.display='block';
+    }
+    </script>
+</head>
+
+<body bgcolor="#CDCDCD">
+    <div id="tutorial" style="display:block">
+        <div class="top"><p>Counterfactual Sentence Recognition Task</p></div>
+        <div class="content">
+            <br>
+            <p align="justify">
+                 <span class="STYLE47">Instruction:</span>
+             </p>
+            <br>
+            <p align="justify">
+                <span class="STYLE10">You will be presented with 20 sentences, and most of them are counterfactual sentences.
+                    Counterfactual sentences usually consist of two parts, an antecedent and a corresponding consequent.
+                    The antecedent has the assumption that is critical for a counterfactual statement, while the consequent
+                    is the result of what will happen assuming the assumption which is counter to the facts is true. However,
+                    not all the counterfactual sentences have consequents, as consequents can be implied. <b>Be careful. For
+                    every counterfactual sentence, the antecedent part is essential but consequent part can be optional. Also,
+                    the order of antecedent and consequent in the sentence can be arbitary. Thus, you need to be careful to
+                     select properly.</b></span>
+            </p>
+            <br>
+            <p align="justify">
+                <span class="STYLE10">For every counterfactual sentence with both an antecedent and consequent, it is possible
+                    to rewrite them into a simple sentence with the same meaning showing the causal-and-effect relationship between the antecedent
+                    and consequent. Thus, for the following work you need to first figure out whether
+                    it is a counterfactual. If it isn’t, please tick the checkbox and move to next sentence. If it is, then
+                    please extract the antecedent and the consequent from the original sentence using <b>copy and paste </b>and then
+                    convert the counterfactual sentence into a <b>free-form</b> sentence showing the relationship.<b>Try not to
+                    copy and paste irrelevant information when extracting the antecedents and consequents.</b> If there is no consequent
+                    , just leave the consequent and rewrite part blank. The examples below can show the detail of the task.</span>
+            </p>
+            <br>
+        </div>
+    </div>
+
+    <div id="example" style="display:block">
+         <div class="content">
+             <p align="justify">
+                 <span class="STYLE47">Here are some examples:</span>
+             </p>
+             <ol class="STYLE9">
+                 <li><p>Her post-traumatic stress could have been avoided if a combination of paroxetine and exposure therapy had been prescribed two months earlier.</p>
+                     <p><b>Antecedent</b>: if a combination of paroxetine and exposure therapy had been prescribed two months earlier</p>
+                     <p><b>Consequent</b>: Her post-traumatic stress could have been avoided</p>
+                     <p><b>Rewritten sentence</b>: A combination of paroxetine and exposure therapy is useful for treating post-traumatic stress.</p></li>
+                 <li><p>I wish I could have seen Esteban there or have done something differently there.</p>
+                     <p><b>Antecedent</b>: I wish I could have seen Esteban there or have done something differently there.</p>
+                     <p><b>Consequent</b>:</p>
+                     <p><b>Rewritten sentence</b>:</p></li>
+                 <li><p>Had the researchers tested their "vitamin mix" in pill form or mixed with water, it might have shown that blood sugar got better," says Buse.</p>
+                     <p><b>Antecedent</b>: Had the researchers tested their "vitamin mix" in pill form or mixed with water</p>
+                     <p><b>Consequent</b>: it might have shown that blood sugar got better</p>
+                     <p><b>Rewritten sentence</b>: "Vitamin mix" in pill form or mixed with water may have better performance on adjusting blood sugar.</p></li>
+                 <li><p>The investigators estimated that if quarterly increases in male unemployment had been constrained over the 23 years, 188 very low weight births could have been prevented in Norway and approximately 329 in Sweden.</p>
+                     <p><b>Antecedent</b>: if quarterly increases in male unemployment had been constrained over the 23 years</p>
+                     <p><b>Consequent</b>: 188 very low weight births could have been prevented in Norway and approximately 329 in Sweden</p>
+                     <p><b>Rewrite sentence</b>: Male unemployment could lead to low weight births.</p></li>
+             </ol>
+         </div>
+    </div>
+
+     <div id="tips" style="display:block">
+         <div class="content">
+             <br>
+             <p align="justify">
+                 <span class="STYLE47">TIPS:</span>
+             </p>
+             <ul class="STYLE10">
+                 <li>Make good use of the hot key for copy and paste as it will be a great aid in improving your efficiency.</li>
+                 <li>Some of the sentences may not be counterfactual, so you can tick the checkbox and move to the next sentence. But be careful as there will only be a small number of them.</li>
+                 <li>If your performance is bad, or you are not working carefully, we may remove your qualification for more work.</li>
+            </ul>
+             <br>
+             <p align="justify">
+                 <span class="STYLE47">If you have read and understood the instructions above, please move on to the following work.</span>
+             </p>
+             <br>
+             <p align="justify">
+                <span class="STYLE47"> *********************************************Attention*********************************************</span>
+            </p>
+            <br>
+            <p align="justify">
+                <span class="STYLE10"><b>Please fill in the Antecedent part and Consequent part strictly copying and
+                    pasting from the original sentence, or your results can be rejected.</b></span>
+            </p>
+            <br>
+            <p align="justify">
+                <span class="STYLE47"> *****************************************************************************************************</span>
+            </p>
+         </div>
+     </div>
+
+    <div id="task" style="display:block">
+             <div class="content">
+                 <br>
+                <p class="STYLE44"># Sentence 1</p>
+                <p class="STYLE45">${paragraph1}</p>
+                 <p class="STYLE44">
+                     <input type="checkbox" name="check1">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent1" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent1" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence1" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                 <p class="STYLE44"># Sentence 2</p>
+                <p class="STYLE45">${paragraph2}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check2">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent2" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent2" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence2" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 3</p>
+                <p class="STYLE45">${paragraph3}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check3">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent3" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent3" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence3" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 4</p>
+                <p class="STYLE45">${paragraph4}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check4">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent4" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent4" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence4" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 5</p>
+                <p class="STYLE45">${paragraph5}</p>
+                                <p class="STYLE44">
+                     <input type="checkbox" name="check5">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent5" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent5" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence5" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 6</p>
+                <p class="STYLE45">${paragraph6}</p>
+                                <p class="STYLE44">
+                     <input type="checkbox" name="check6">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent6" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent6" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence6" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 7</p>
+                <p class="STYLE45">${paragraph7}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check7">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent7" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent7" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence7" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 8</p>
+                <p class="STYLE45">${paragraph8}</p>
+                 <p class="STYLE44">
+                     <input type="checkbox" name="check8">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent8" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent8" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence8" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 9</p>
+                <p class="STYLE45">${paragraph9}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check9">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent9" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent9" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence9" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 10</p>
+                <p class="STYLE45">${paragraph10}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check10">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent10" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent10" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence10" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 11</p>
+                <p class="STYLE45">${paragraph11}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check11">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent11" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent11" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence11" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 12</p>
+                <p class="STYLE45">${paragraph12}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check12">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent12" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent12" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence12" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 13</p>
+                <p class="STYLE45">${paragraph13}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check13">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent13" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent13" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence13" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 14</p>
+                <p class="STYLE45">${paragraph14}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check14">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent14" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent14" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence14" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 15</p>
+                <p class="STYLE45">${paragraph15}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check15">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent15" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent15" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence15" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 16</p>
+                <p class="STYLE45">${paragraph16}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check16">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent16" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent16" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence16" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 17</p>
+                <p class="STYLE45">${paragraph17}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check17">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent17" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent17" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence17" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 18</p>
+                <p class="STYLE45">${paragraph18}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check18">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent18" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent18" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence18" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 19</p>
+                <p class="STYLE45">${paragraph19}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check19">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent19" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent19" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence19" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 20</p>
+                <p class="STYLE45">${paragraph20}</p>
+                <p class="STYLE44">
+                     <input type="checkbox" name="check20">This is <b>not</b> a counterfactual sentence
+                </p>
+                 <p class="STYLE10"><b>Antecedent:</b>
+                     <textarea name= "antecedent20" class="textarea" placeholder="Please put antecedent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Consequent:</b>
+                     <textarea name= "consequent20" class="textarea" placeholder="Please put consequent part here" ></textarea>
+                 </p>
+                 <p class="STYLE10"><b>Rewrite sentence:</b>
+                     <textarea name= "sentence20" class="textarea" placeholder="Please put rewrite sentence here" ></textarea>
+                 </p>
+             </div>
+    </div>
+</body>
+
+</html>

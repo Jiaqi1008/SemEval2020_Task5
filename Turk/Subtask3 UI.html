@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>Subtask 3</title>
+
+    <style type="text/css">
+        .top{
+            height: 80px;
+            background: #BC8F8F;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .top p{
+            color: #FFFFFF;
+            font-size: 36px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 80px;
+        }
+        .content{
+            margin: 0 auto;
+            line-height: 30px;
+            padding-left: 150px;
+            padding-right: 150px;
+            font-size: 0;
+        }
+        .textarea{
+            width: 1200px;
+            line-height:20px
+
+        }
+        .button{
+            margin-top:32px;
+            height:40px;
+            text-decoration:none;
+            background:#2f435e;
+            color:#f2f2f2;
+            padding: 10px 30px 10px 30px;
+            font-size:16px;
+            font-family: Arial,sans-serif;
+            font-weight:bold;
+            border-radius:3px;
+            -webkit-transition:all linear 0.30s;
+            -moz-transition:all linear 0.30s;
+            transition:all linear 0.30s;
+        }
+        input:hover { background:#385f9e; }
+<!--
+.STYLE8 {color: #000000; font-size: large; font-family: Arial;}
+.STYLE9 {color: #23238E; font-size: 25px; font-family: Arial; }
+.STYLE10 {color: #000000; font-size: 25px; font-family: Arial;}
+.STYLE22 {color: #000000; font-size: 30px; font-family: Arial;}
+.STYLE44 {font-size: 18px; font-weight: bold}
+.STYLE45 {font-size: 16px; font-family: Arial;}
+.STYLE47 {color: #000000; font-size: 30px; font-weight: bold; font-family: Arial;}
+-->
+    </style>
+
+    <script type=text/javascript>
+    function showAndHidden(a,b){
+        var div1=document.getElementById(a);
+        var div2=document.getElementById(b);
+        if(div1.style.display=='block')
+            div1.style.display='none';
+        else
+            div1.style.display='block';
+        if(div2.style.display=='block')
+            div2.style.display='none';
+        else
+            div2.style.display='block';
+    }
+    </script>
+</head>
+
+<body bgcolor="#CDCDCD">
+    <div id="tutorial" style="display:block">
+        <div class="top"><p>Counterfactual Sentence Rewriting Task</p></div>
+        <div class="content">
+            <br>
+            <p align="justify">
+                 <span class="STYLE47">Instruction:</span>
+             </p>
+            <br>
+            <p align="justify">
+                <span class="STYLE10">For this task you will be given 10 sentences and 3 random words
+                    for each sentence. Your job is to find a way to naturally incorporate only <b>ONE</b> of these words in
+                    the sentence without changing its counterfactual nature or its general meaning. It is much preferred
+                    if you do not remove or move around anything in the sentence but merely add an extra clause or
+                    an extra part that contains the word and is consistent with the context of the sentence. Do not
+                    write a new sentence, the word must be contained within the one sentence!</span>
+            </p>
+            <br>
+            <p align="justify">
+                <span class="STYLE10">Half of the sentences you will be given will need to incorporate future based words,
+                    and the other half will have to incorporate past-based words. For the future based words, you should
+                    find a way to talk about something related to the future in the sentence based on the context of the
+                    sentence. For the past based words, you should talk about or expand some information about a fact
+                    that is established somewhere in the sentence.</span>
+            </p>
+            <br>
+            <p align="justify">
+                <span class="STYLE10"><b>Do not</b> lazily put the word somewhere in the sentence without any thought. The sentence
+                    still has to be grammatically correct and make sense when you read it. If it doesn’t, think about
+                    how else to incorporate it, or use a different word.</span>
+            </p>
+        </div>
+        <!--<center><input type="button" class="button" onclick="showAndHidden('tutorial','definition1')" value="Start the Tutorial" ></center>-->
+    </div>
+
+     <!--<div id="example" style="display:block">-->
+         <!--<div class="content">-->
+
+         <!--</div>-->
+     <!--</div>-->
+
+     <div id="tips" style="display:block">
+         <div class="content">
+             <br>
+             <p align="justify">
+                 <span class="STYLE47">TIPS:</span>
+             </p>
+             <p align="justify">
+                 <span class="STYLE10">Its okay to make the sentence long, in fact it is recommended, provided that you find a natural way to incorporate the word in the sentence.</span>
+             </p>
+             <p align="justify">
+                 <span class="STYLE10">Try to talk about some future based scenario relating to the facts of the sentence
+                     for the future based words as an aside, it will make it easier to incorporate these words in the sentence,
+                     and it is inline with the goal of the task to make tricky sentences where it is difficult to detect whether
+                     the sentence is about the past or the future. Likewise, do something similar in the past case too except
+                     try to make it clearly factual. This would make it harder to detect whether it is factual or counterfactual.</span>
+             </p>
+         </div>
+     </div>
+
+    <div id="task" style="display:block">
+             <div class="content">
+                 <br>
+                 <p align="justify">
+                 <span class="STYLE47">EXAMPLE FUTURE:</span>
+             </p>
+                 <ul class="STYLE10">
+                     <li><b>Original Sentence</b>: If I had seen him, I would have told you about it</li>
+                     <li><b>Words/Phrases to Include</b>: coming times, approaching, potentially</li>
+                     <li><b>Modified Sentence</b>: If I had seen him and in the <b>coming times</b>, I hope that I will, I would have told you about it</li>
+                </ul>
+             <p align="justify">
+                 <span class="STYLE10">Out of the 3 words given, coming times was chosen. Notice how the part added with the
+                     phrase doesn’t make the sentence non-counterfactual but still discusses some future events related to
+                     the context of the sentence. The original meaning of the sentence hasn’t been changed; it has only been
+                     slightly expanded. This is what we want. </span>
+             </p>
+                 <br>
+                 <p align="justify">
+                     <span class="STYLE47">Now, you can start the following works based on future words.</span>
+                 </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 1</p>
+                <p class="STYLE45">${paragraph1}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word1}</p>
+                <p>
+                    <textarea name="text_1" class="textarea"></textarea>
+                </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 2</p>
+                <p class="STYLE45">${paragraph2}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word2}</p>
+                <p>
+                    <textarea name="text_2" class="textarea"></textarea>
+                </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 3</p>
+                <p class="STYLE45">${paragraph3}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word3}</p>
+                <p>
+                    <textarea name="text_3" class="textarea"></textarea>
+                </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 4</p>
+                <p class="STYLE45">${paragraph4}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word4}</p>
+                <p>
+                    <textarea name="text_4" class="textarea"></textarea>
+                </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 5</p>
+                <p class="STYLE45">${paragraph5}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word5}</p>
+                <p>
+                    <textarea name="text_5" class="textarea"></textarea>
+                </p>
+
+                <br>
+                 <p align="justify">
+                 <span class="STYLE47">EXAMPLE PAST:</span>
+                 </p>
+                 <ul class="STYLE10">
+                     <li><b>Original Sentence</b>: In this world, her uncle might have lived, and so might countless others</li>
+                     <li><b>Words/Phrases to Include</b>: hence, as a result of, in view of</li>
+                     <li><b>Modified Sentence</b>: In this world, her uncle might have lived, and so might countless others <b>hence</b> it is important we try to reach such a world.</li>
+                </ul>
+                 <br>
+                <p align="justify">
+                     <span class="STYLE10">Hence was chosen out of the 3 words and the extra part of the sentence is just
+                         making a comment about the subject matter. Like before it doesn’t change the counterfactual nature
+                         of the sentence, it merely expands it slightly. </span>
+                </p>
+                 <br>
+                 <p align="justify">
+                     <span class="STYLE47">Now, you can start the following works based on future words.</span>
+                 </p>
+                 <br>
+                <p class="STYLE44"># Sentence 6</p>
+                <p class="STYLE45">${paragraph6}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word6}</p>
+                <p>
+                    <textarea name="text_6" class="textarea"></textarea>
+                </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 7</p>
+                <p class="STYLE45">${paragraph7}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word7}</p>
+                <p>
+                    <textarea name="text_7" class="textarea"></textarea>
+                </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 8</p>
+                <p class="STYLE45">${paragraph8}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word8}</p>
+                <p>
+                    <textarea name="text_8" class="textarea"></textarea>
+                </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 9</p>
+                <p class="STYLE45">${paragraph9}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word9}</p>
+                <p>
+                    <textarea name="text_9" class="textarea"></textarea>
+                </p>
+
+                 <br>
+                <p class="STYLE44"># Sentence 10</p>
+                <p class="STYLE45">${paragraph10}</p>
+                <p class="STYLE45"><b>Words pool</b>: ${word10}</p>
+                <p>
+                    <textarea name="text_10" class="textarea"></textarea>
+                </p>
+             </div>
+    </div>
+    <!--<div id="definition1" style="display:none">-->
+        <!--<div class="top"><p>Counterfactual Thinking Recognition</p></div>-->
+        <!--<div class="content">-->
+                <!--<br>-->
+                <!--<p align="justify"><span class="STYLE47">1. Definition</span></p>-->
+                <!--<br>-->
+                <!--<p align="justify"><span class="STYLE10">Counterfactual statements in essence deal with an alternate reality to the one that actually happened and usually talk about what happens as a result of being in this alternate scenario, like what should have happened or what could have happened had a certain event not occurred for example. Thus, a counterfactual statement includes an assumption that is <b>counter to the facts.</b> In other words, it means the assumption described in a specific sentence contradicts the <b>'facts'</b> that you know. The 'facts' include: </span></p>-->
+                <!--<ul class="STYLE10">-->
+                    <!--<li><b>Events that Have Already Happened</b></li>-->
+                    <!--<li><b>Facts About the Present</b></li>-->
+                    <!--<li><b>Objective Truths</b></li>-->
+                    <!--<li><b>Common Sense</b></li>-->
+                <!--</ul>-->
+                <!--<p align="justify"><span class="STYLE10"> Whatever you think belongs to these categories of 'facts' can be used to determine whether a given statement is counterfactual.</span></p>-->
+            <!--<div style="float:right"><input type="button" class="button" onclick="showAndHidden('definition1','definition2')" value="Next" ></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="definition2" style="display:none">-->
+        <!--<div class="top"><p>Counterfactual Thinking Recognition</p></div>-->
+        <!--<div class="content">-->
+            <!--<br>-->
+            <!--<br>-->
+            <!--<p align="justify"><span class="STYLE22">Here is an example of a counterfactual statement:</span></p>-->
+            <!--<ul class="STYLE10">-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<li><b>I wish I could have seen Esteban there or have done something differently there.</b></li>-->
+                <!--<br>-->
+                <!--<br>-->
+            <!--</ul>-->
+            <!--<p align="justify"><span class="STYLE10">In this example, we can find the implicit assumption that <b>Esteban has not been there</b> and <b>thus cannot do anything differently</b>, and that is why we are wishing for an alternate scenario where he is there. So, in the original sentence, <b>“I could have seen Esteban”</b> and <b>“have done something differently”</b> contradicts <b>the events that have already happened</b>, and it is a counterfactual.</span></p>-->
+            <!--<br>-->
+            <!--<div style="float:left"><input type="button" class="button" onclick="showAndHidden('definition1','definition2')" value="Previous" ></div>-->
+            <!--<div style="float:right"> <input type="button" class="button" onclick="showAndHidden('definition2','definition3')" value="Next"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="definition3" style="display:none">-->
+        <!--<div class="top"><p>Counterfactual Thinking Recognition</p></div>-->
+        <!--<div class="content">-->
+            <!--<br>-->
+            <!--<p align="justify"><span class="STYLE22">Following are some <b>*important*</b> and <b>useful</b> tips for this task:</span></p>-->
+            <!--<ol class="STYLE10">-->
+                <!--<li>A counterfactual sentence <b>must</b> include an assumption that is counter to the facts. Including a consequence of the assumption is optional, although consequences are very common. The assumption is the <b>*only*</b> way to figure out whether a statement is counterfactual. </li>-->
+                <!--<br>-->
+                <!--<li>A sentence that indicates a prediction about the future is <b><u>NOT</u></b> a counterfactual statement. This is because future events, even almost certain ones like the sun rising tomorrow, are not sure to happen and are <b>NOT</b> factual. <b>PLEASE PAY ATTENTION TO THIS CASE!</b> This will likely be one of the most common types of statement you will see and often times they will look like and have similar grammatical features to counterfactual statements. Just because <b>there is past or present tense in a statement does not mean it is not referring to future events</b>, be careful! </li>-->
+                <!--<br>-->
+                <!--<li>Our sentences are extracted from various sources and are provided without any context. So please focus on judging whether the statements are counterfactual or not instead of relying on sentential logic or probing sentence structures and grammar and judging based on that. <b>Use common sense and general knowledge with regards to assumptions, especially when dealing with present events, as this will help tremendously.</b></li>-->
+                <!--<br>-->
+                <!--<li>Remember that counterfactual is not lies or perceived lies so do not label statements you find as counterfactual just because you judge them to not be the truth. For example something like “if X politician with Y political affiliation is to be elected, then they would increase taxes would go up 50%” is not counterfactual even if you think it is not true.</li>-->
+                <!--<br>-->
+                <!--<li> We know that some statements will be difficult to judge, but just follow the definition and give your best guess.</li>-->
+            <!--</ol>-->
+            <!--<div style="float:left"><input type="button" class="button" onclick="showAndHidden('definition2','definition3')" value="Previous" ></div>-->
+            <!--<div style="float: right"> <input type="button" class="button" onclick="showAndHidden('definition3','example1')" value="Next"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="example1" style="display: none">-->
+        <!--<div class="top"><p>Counterfactual Thinking Recognition</p></div>-->
+        <!--<div class="content">-->
+            <!--<br>-->
+            <!--<p align="justify"><span class="STYLE47">2. Example</span></p>-->
+            <!--<p align="justify"><span class="STYLE10"> Please pay attention to the following examples as they will help you do the task efficiently.</span></p>-->
+            <!--<p align="justify" class="STYLE22"><b>(1) These are counterfactual statements: </b> </p>-->
+            <!--<p align="justify"><span class="STYLE8">（The bold part is why it is a counterfactual.）</span></p>-->
+            <!--<ol type="A" class="STYLE10">-->
+                <!--<li><u>I wouldn't have done that <b>if I were you.</b></u><p> (We all know that I can’t be you, the assumption contradicts <b>Facts About the Present.</b>)</p></li>-->
+                <!--<li><u>They are discussing what our clothes would say <b>if they could talk.</b></u><p>(We all know that the clothes can’t speak, the assumption contradicts <b>Common Sense.</b>)</p></li>-->
+                <!--<li><u>Would the prisoner be alive <b>if rifleman A had not shot</b>?</u><p>(It’s a counterfactual question. It can be inferred that rifleman A had shot, and as a result the question is asking what would happen if rifleman A had not shot. Thus, it is an assumption that contradicts <b>Events that Have Already Happened.</b>)</p></li>-->
+                <!--<li><u><b>Had the researchers tested their "vitamin mix" in pill form or mixed with water</b>, "that would be different it might have shown that blood sugar got better," says Buse.</u><p>(In fact, the researchers haven’t tested their pills and if they test the pills, the results will be different. Thus, it is an assumption that contradicts <b>Events that Have Already Happened</b>.)</p></li>-->
+                <!--<li><u>The investigators estimated that <b>if quarterly increases in male unemployment had been constrained over the 23 years</b>, 188 very low weight births could have been prevented in Norway and approximately 329 in Sweden.</u><p>(In fact, during the 23 years, the male unemployment hadn’t been constrained. Thus, it is an assumption that contradicts <b>Events that Have Already Happened</b>.)</p></li>-->
+            <!--</ol>-->
+            <!--<div style="float: left"><input type="button" class="button" onclick="showAndHidden('definition3','example1')" value="Previous" ></div>-->
+            <!--<div style="float: right"><input type="button" class="button" onclick="showAndHidden('example1','example2')" value="Next" ></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="example2" style="display: none">-->
+        <!--<div class="top"><p>Counterfactual Thinking Recognition</p></div>-->
+        <!--<div class="content">-->
+            <!--<br>-->
+            <!--<p align="justify" class="STYLE22"><b>(2) These are <b>NOT</b> counterfactual statements: </b></p>-->
+            <!--<p align="justify"><span class="STYLE8">（The bold part is why it isn't a counterfactual.）</span></p>-->
+            <!--<ol type="A" class="STYLE10">-->
+                <!--<li><u>"There are people that are saying I like this job and I'll put up with it for as long as I can, but I know <b>if this government shutdown continues</b>, then financially I can't do that to my family," one said.</u><p>(This shows a prediction about the future regarding the government shutdown. <b>A sentence that describes events that might happen in the future cannot be counterfactual</b>)</p></li>-->
+                <!--<li><u>"As far as the market is concerned, <b>you couldn't have scripted it any better</b>," said JJ Kinahan, chief market strategist at TD Ameritrade.</u><p>(There is <b>no assumption here that is counter to a fact</b>. Instead, it is just making a comment on market behavior that has transpired. Hence you cannot say that it is counterfactual.)</p></li>-->
+                <!--<li><u><b>Should the company pass on the opportunity</b>, he continued, "it will be a major strategic mistake.</u><p>(It shows a possibility for the company to pass on the opportunity, but the result is unsure. This is a sentence that describes <b>events that might happen in the future</b>, thus it is not a counterfactual statement.)</p></li>-->
+                <!--<li><u><b>If China "refuses to change its practices" and insists on continuing with the new tariffs it recently declared on the US</b>, then the additional levies would be imposed on the Asian nation, Trump said.</u><p>(We don’t know whether China will change its practices or not, so it is an unsure situation for this sentence. This is a sentence that describes <b>events that might happen in the future</b>, thus it is not a counterfactual.)</p></li>-->
+                <!--<li><u><b>"If Jones had taken arsenic</b>, he would have shown just exactly those symptoms which he does in fact show." Rouhani said.</u><p>(We can find that Jones does show the symptoms of taking arsenic and so it doesn’t counter the sentence ” If Jones had taken arsenic”, which means there is <b>no assumption here that is counter to a fact</b>.)</p></li>-->
+            <!--</ol>-->
+            <!--<p align="justify" class="STYLE22"><b>If you feel you have understood the concept of counterfactuals, please continue with the following task.</b></p>-->
+            <!--<div style="float: left"><input type="button" class="button" onclick="showAndHidden('example1','example2')" value="Previous" ></div>-->
+            <!--<div style="float: right"><input type="button" class="button" onclick="showAndHidden('example2','task')" value="Start the Task" ></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="task" style="display:none;">-->
+        <!--<div class="top"><p>Counterfactual Thinking Recognition</p></div>-->
+        <!--<div class="content">-->
+            <!--<br>-->
+            <!--<p class="STYLE44"># Sentence 1</p>-->
+            <!--<p class="STYLE45">${paragraph1}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 2</p>-->
+            <!--<p class="STYLE45">${paragraph2}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 3</p>-->
+            <!--<p class="STYLE45">${paragraph3}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 4</p>-->
+            <!--<p class="STYLE45">${paragraph4}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 5</p>-->
+            <!--<p class="STYLE45">${paragraph5}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 6</p>-->
+            <!--<p class="STYLE45">${paragraph6}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 7</p>-->
+            <!--<p class="STYLE45">${paragraph7}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 8</p>-->
+            <!--<p class="STYLE45">${paragraph8}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 9</p>-->
+            <!--<p class="STYLE45">${paragraph9}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 10</p>-->
+            <!--<p class="STYLE45">${paragraph10}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 11</p>-->
+            <!--<p class="STYLE45">${paragraph11}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 12</p>-->
+            <!--<p class="STYLE45">${paragraph12}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 13</p>-->
+            <!--<p class="STYLE45">${paragraph13}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 14</p>-->
+            <!--<p class="STYLE45">${paragraph14}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 15</p>-->
+            <!--<p class="STYLE45">${paragraph15}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 16</p>-->
+            <!--<p class="STYLE45">${paragraph16}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 17</p>-->
+            <!--<p class="STYLE45">${paragraph17}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 18</p>-->
+            <!--<p class="STYLE45">${paragraph18}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 19</p>-->
+            <!--<p class="STYLE45">${paragraph19}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 20</p>-->
+            <!--<p class="STYLE45">${paragraph20}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 21</p>-->
+            <!--<p class="STYLE45">${paragraph21}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+            <!--<p class="STYLE44"># Sentence 22</p>-->
+            <!--<p class="STYLE45">${paragraph22}</p>-->
+            <!--<p>-->
+                <!--<select name="Sel1@cvae&memo_cvae">-->
+                    <!--<option selected="selected" value="X"></option>-->
+                    <!--<option value="1">It is a counterfactual.</option>-->
+                    <!--<option value="0">It isn't a counterfactual.</option>-->
+                <!--</select>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
+</body>
+
+</html>
